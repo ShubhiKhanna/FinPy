@@ -1,0 +1,16 @@
+"""Importing Tesla stocks"""
+
+import pandas as pd
+import numpy as np
+import matplotlib.pylab as plt
+import datetime as dt
+import pandas_datareader as web
+
+start = dt.datetime(2015, 1, 1, 0, 0)
+end = dt.datetime.now()
+df = web.DataReader("TSLA", 'yahoo', start, end)
+Symbol = 'High'
+df.reset_index(inplace=True)
+df.set_index("Date", inplace=True)
+df = df.drop('High',axis='columns')
+print(df.head(6))
